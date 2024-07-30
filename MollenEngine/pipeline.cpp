@@ -106,6 +106,14 @@ namespace mve {
 		pipelineInfo.basePipelineIndex = -1;
 		pipelineInfo.basePipelineHandle = VK_NULL_HANDLE;
 
+		auto bindingDescription = Vertex::getBindingDescription();
+		auto attributeDescriptions = Vertex::getAttributeDescriptions();
+
+		vertexInputInfo.vertexBindingDescriptionCount = 1;
+		vertexInputInfo.vertexAttributeDescriptionCount = static_cast<uint32_t>(attributeDescriptions.size());
+		vertexInputInfo.pVertexBindingDescriptions = &bindingDescription;
+		vertexInputInfo.pVertexAttributeDescriptions = attributeDescriptions.data();
+
 		if (vkCreateGraphicsPipelines(device.device(), 
 			VK_NULL_HANDLE, 1, 
 			&pipelineInfo, nullptr, 
@@ -201,6 +209,7 @@ namespace mve {
 
 		return configInfo;
 	}
+
 
 
 }
