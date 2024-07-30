@@ -77,4 +77,4 @@ class SwapChain {
   size_t currentFrame = 0;
 };
 
-}  // namespace lve
+}

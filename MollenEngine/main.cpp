@@ -1,15 +1,15 @@
-#include "first_app.hpp"
+#include "engine.hpp"
 
 #include <cstdlib>
 #include <iostream>
 #include <stdexcept>
 
 int main() {
-	mve::FirstApp app{};
+	mve::MollenEngine engine{};
 
 	try
 	{
-		app.run();
+		engine.run();
 	}
 	catch (const std::exception &e)
 	{
