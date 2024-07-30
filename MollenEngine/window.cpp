@@ -1,7 +1,8 @@
 #include "window.hpp"
+#include <stdexcept>
 
 namespace mve {
-	Window::Window(size_t w, size_t h, std::string name) : width{ w }, height{ h }, windowName{ name } {
+	Window::Window(int w, int h, std::string name) : width{ w }, height{ h }, windowName{ name } {
 		initWindow();
 	}
 
@@ -16,5 +17,12 @@ namespace mve {
 		glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 
 		window = glfwCreateWindow(width, height, windowName.c_str(), nullptr, nullptr);
+	}
+
+	void Window::createWindowSurface(VkInstance instance, VkSurfaceKHR* surface) {
+		if (glfwCreateWindowSurface(instance, window, nullptr, surface) != VK_SUCCESS)
+		{
+			throw std::runtime_error("failed to create window surface");
+		}
 	}
 }

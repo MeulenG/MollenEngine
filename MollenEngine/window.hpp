@@ -9,7 +9,7 @@ namespace mve {
 	class Window {
 
 	public:
-		Window(size_t w, size_t h, std::string name);
+		Window(int w, int h, std::string name);
 		~Window();
 
 		Window(const Window&) = delete;
@@ -17,11 +17,15 @@ namespace mve {
 
 		bool shouldClose() { return glfwWindowShouldClose(window); }
 
+		VkExtent2D getExtent() { return { static_cast<uint32_t>(width), static_cast<uint32_t>(height) }; }
+
+		void createWindowSurface(VkInstance instance, VkSurfaceKHR* surface);
+
 	private:
 		void initWindow();
 
-		const size_t width;
-		const size_t height;
+		const int width;
+		const int height;
 
 		std::string windowName;
 		GLFWwindow* window;
