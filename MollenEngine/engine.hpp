@@ -11,16 +11,16 @@
 #include <vector>
 
 namespace mve {
-	class FirstApp {
+	class MollenEngine {
 	public:
 		static constexpr size_t WIDTH = 800;
 		static constexpr size_t HEIGHT = 600;
 
-		FirstApp();
-		~FirstApp();
+		MollenEngine();
+		~MollenEngine();
 
-		FirstApp(const FirstApp&) = delete;
-		FirstApp& operator=(const FirstApp&) = delete;
+		MollenEngine(const MollenEngine&) = delete;
+		MollenEngine& operator=(const MollenEngine&) = delete;
 
 		void run();
 
@@ -36,6 +36,7 @@ namespace mve {
 		std::unique_ptr<Pipeline> pipeLine;
 		VkPipelineLayout pipeLineLayout;
 		std::vector<VkCommandBuffer> commandBuffers;
+		VkBuffer vertexBuffer;
 	};
 }
 

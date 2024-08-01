@@ -79,6 +79,7 @@ class Device {
       void pickPhysicalDevice();
       void createLogicalDevice();
       void createCommandPool();
+      void createVertexBuffer();
 
       // helper functions
       bool isDeviceSuitable(VkPhysicalDevice device);
@@ -93,6 +94,8 @@ class Device {
       VkInstance instance;
       VkDebugUtilsMessengerEXT debugMessenger;
       VkPhysicalDevice physicalDevice = VK_NULL_HANDLE;
+      VkDeviceMemory vertexBufferMemory;
+      VkBuffer vertexBuffer;
       Window &window;
       VkCommandPool commandPool;
 

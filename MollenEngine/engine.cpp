@@ -1,4 +1,5 @@
-#include "first_app.hpp"
+#include "engine.hpp"
+#include "device.hpp"
 
 //std
 #include <stdexcept>
@@ -6,17 +7,17 @@
 
 
 namespace mve {
-	FirstApp::FirstApp() {
+	MollenEngine::MollenEngine() {
 		createPipelineLayout();
 		createPipeline();
 		createCommandBuffers();
 	}
 
-	FirstApp::~FirstApp() {
+	MollenEngine::~MollenEngine() {
 		vkDestroyPipelineLayout(device.device(), pipeLineLayout, nullptr);
 	}
 
-	void FirstApp::run() {
+	void MollenEngine::run() {
 
 		while (!Window.shouldClose()) {
 			glfwPollEvents();
@@ -25,7 +26,7 @@ namespace mve {
 
 		vkDeviceWaitIdle(device.device());
 	}
-	void FirstApp::createPipelineLayout() {
+	void MollenEngine::createPipelineLayout() {
 		VkPipelineLayoutCreateInfo pipelineLayoutInfo{};
 		pipelineLayoutInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;
 		pipelineLayoutInfo.setLayoutCount = 0;
@@ -38,7 +39,7 @@ namespace mve {
 		}
 	}
 
-	void FirstApp::createPipeline() {
+	void MollenEngine::createPipeline() {
 		auto pipelineConfig = Pipeline::defaultPiplineConfigInfo(swapChain.width(), swapChain.height());
 		pipelineConfig.renderPass = swapChain.getRenderPass();
 		pipelineConfig.pipelineLayout = pipeLineLayout;
@@ -49,7 +50,7 @@ namespace mve {
 			pipelineConfig);
 	}
 
-	void FirstApp::createCommandBuffers() {
+	void MollenEngine::createCommandBuffers() {
 		commandBuffers.resize(swapChain.imageCount());
 
 		VkCommandBufferAllocateInfo allocInfo{};
@@ -100,7 +101,7 @@ namespace mve {
 		}
 	}
 
-	void FirstApp::drawFrame() {
+	void MollenEngine::drawFrame() {
 		uint32_t imageIndex;
 		auto result = swapChain.acquireNextImage(&imageIndex);
 
